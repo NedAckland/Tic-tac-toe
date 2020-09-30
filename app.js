@@ -1,4 +1,5 @@
-
+// select Html elements
+var element = document.querySelectorAll('li');
 
 // all possible combinations of squares to win 
 var winningCombos = [
@@ -12,9 +13,7 @@ var winningCombos = [
     [2, 4, 5]
 ]
 
-
 // player objects
-// TODO when making moves, append move to player objects
 var playerOne = {
     side: "O",
     moves: [],
@@ -24,6 +23,64 @@ var playerTwo = {
     side: "X",
     moves: [],
     isWinner: false
+}
+
+//global variable to keep track of moves made
+var gameCounter = 0;
+
+//global variable to check if the game will continue
+var gameOver = false;
+
+
+//happens after each click event
+function handleClick(event){
+    // debugger
+    chooseSquare(event);
+    gameOverCheck();
+
+}
+
+// writes the players move into the clicked box
+function chooseSquare(e){
+    if(!gameOver){
+        if(gameCounter % 2 == 0 && e.target.textContent !== "O"){
+            playerChoices(playerTwo, e)
+            e.target.textContent = "X"
+            gameCounter = gameCounter + 1
+        }else if(e.target.textContent !== "X"){
+            playerChoices(playerOne, e)
+            e.target.textContent = "O"
+            gameCounter = gameCounter + 1
+        }
+    }
+
+}
+
+//keeps track of each players moves
+function playerChoices(playerIs, e){
+    if(!gameOver){
+        playerIs.moves.push(Number(e.target.getAttribute("data-square")))
+        e.target.removeAttribute("data-square")        
+        console.log(playerIs.moves)
+    }
+}
+
+
+//checks is either player is winner then sets game over to true
+function gameOverCheck(){
+    if(gameCounter >= 3){
+        checkWin(playerTwo)
+        checkWin(playerOne)
+        if(playerOne.isWinner){
+            alert(playerOne.side + " is the winner")
+            gameOver = true;
+            return true;
+        }else if(playerTwo.isWinner){
+            alert(playerTwo.side + " is the winner")
+            gameOver = true;
+            return true;
+        }
+    }
 }
 
 
@@ -47,51 +104,12 @@ function comboCheck(player, comboIndex){
 function checkWin(player){
     for(let j = 0; j < winningCombos.length; j++){
         if(comboCheck(player.moves, j)){
-            console.log(`${player.side} has won`)
+            // console.log(`${player.side} has won`)
             //set player to winner
             player.isWinner = true;
-            return;
+            // return;
         }
     }  
-}
-
-
-var element = document.querySelectorAll('li');
-var gameCounter = 0;
-
-
-function handleClick(event){
-    checkWin(playerTwo)
-    checkWin(playerOne)
-    chooseSquare(event);
-    if(playerOne.isWinner){
-        alert(playerOne.side + " is the winner")
-    }else if(playerTwo.isWinner){
-        alert(playerTwo.side + " is the winner")
-    }
-}
-
-function chooseSquare(e){
-    if(gameCounter % 2 == 0 && e.target.textContent !== "O"){
-        playerChoices(playerTwo, e)
-        e.target.textContent = "X"
-        gameCounter = gameCounter + 1
-
-
-    }else if(e.target.textContent !== "X"){
-        playerChoices(playerOne, e)
-        e.target.textContent = "O"
-        gameCounter = gameCounter + 1
-
-    }
-
-}
-
-function playerChoices(playerIs, e){
-    playerIs.moves.push(Number(e.target.getAttribute("data-square")))
-    e.target.removeAttribute("data-square")
-    console.log(playerIs.moves)
-
 }
 
 
