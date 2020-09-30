@@ -1,10 +1,19 @@
 // select Html elements
 var element = document.querySelectorAll('li');
 var restart = document.querySelector('.start-again');
-var playerOneScore = document.querySelector('.score-traker-O span');
-var playerTwoScore = document.querySelector('.score-traker-X span');
+var playerOneScore = document.querySelectorAll('.score-traker-O span')[1];
+var playerTwoScore = document.querySelectorAll('.score-traker-X span')[1];
+var playerOneName = document.querySelector('.score-traker-O span');
+var playerTwoName = document.querySelector('.score-traker-X span');
 var title = document.querySelector('.title');
+var options = document.querySelector('.options');
+var optionWrap = document.querySelector('.option-wrap')
+var nameChangePOne = document.querySelector('.p1-name');
+var nameChangePTwo = document.querySelector('.p2-name');
+var playerOptions = document.querySelector('.player-one-options');
 
+var nameInput = document.querySelector('input');
+var btn = document.querySelectorAll('button');
 
 //global variable to keep track of moves made
 var gameCounter = 0;
@@ -48,6 +57,9 @@ function handleClick(event){
 // restart button
 restart.addEventListener('click', NewGame);
 
+//option menu name
+options.addEventListener('click', optionDropDown);
+
 // writes the players move into the clicked box
 function chooseSquare(e){
     if(!gameOver){
@@ -68,10 +80,8 @@ function chooseSquare(e){
 }
 
 function draw(){
-    console.log(playerOne.moves.length)
     if(playerOne.moves.length == 5 && !gameOver){
         gameOver = true;
-        alert("no one wins")
         title.textContent = "Draw" 
     }
 }
@@ -81,7 +91,6 @@ function playerChoices(playerIs, e){
     if(!gameOver){
         playerIs.moves.push(Number(e.target.getAttribute("data-square")))
         e.target.removeAttribute("data-square")        
-        // console.log(playerOne.moves)
     }
 }
 
@@ -124,14 +133,12 @@ function comboCheck(player, comboIndex){
 function checkWin(player){
     for(let j = 0; j < winningCombos.length; j++){
         if(comboCheck(player.moves, j)){
-            // console.log(`${player.side} has won`)
             //set player to winner
             player.isWinner = true;
-            // return;
         }
     }  
 }
-
+// Tracks current users scores
 function scoreTraker(){
     if(playerOne.isWinner){
         playerOneScore.textContent = Number(playerOneScore.textContent) + 1;
@@ -154,10 +161,44 @@ function NewGame(){
         element[i].setAttribute("data-square", i)
     }
 }
+//to prevent needing to double click
+optionWrap.style.visibility = "hidden";
 
 
+//change the player name
+function optionDropDown(){
+    if(optionWrap.style.visibility == "hidden"){
+        optionWrap.style.visibility = "visible"
+        optionWrap.style.transform = "scale(1)"
 
+    }else{
+        optionWrap.style.visibility = "hidden"
+        optionWrap.style.transform = "scale(0)"
+    }
+
+}
+function pOneNameDropDown(){
+    console.log(nameChangePOne.textContent)
+}
+function pTwoNameDropDown(){
+    console.log(nameChangePTwo.textContent)
+}
+function changeName(){
+    // alert(nameInput.value)
+    // console.log("hello")
+    playerOneName.textContent = nameInput.value + '-';
+
+
+}
+
+// nameChangePOne.addEventListener('click', pOneNameDropDown);
+// nameChangePTwo.addEventListener('click', pTwoNameDropDown);
 
 for(let i = 0; i < element.length; i++){
     element[i].addEventListener('click', handleClick)
 }
+
+// for(let i = 0; i < btn.length; i++){
+//     btn[i].addEventListener('click', handleClick)
+// }
+
