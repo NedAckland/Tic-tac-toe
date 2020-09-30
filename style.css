@@ -3,23 +3,25 @@
 }
 
 main{
-    height: 500px;
-    width: 400px;
+    height: 600px;
+    width: 500px;
     background-color: aquamarine;
 }
 
 .container{
-    height: inherit;
+    height: 600px;
 }
 .square-wrap{
-    height: inherit;
+    height: 100%;
     display: grid;
+    padding: inherit;
+
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
+    /* gap: 10px; */
 }
 li{
     display: grid;
     justify-content: center;
     align-items: center;
-    border: 3px solid black;
+    border: 1px solid black;
 }

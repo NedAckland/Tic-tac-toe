@@ -1,6 +1,12 @@
 // select Html elements
 var element = document.querySelectorAll('li');
 
+//global variable to keep track of moves made
+var gameCounter = 0;
+
+//global variable to check if the game will continue
+var gameOver = false;
+
 // all possible combinations of squares to win 
 var winningCombos = [
     [0, 1, 2],
@@ -10,7 +16,7 @@ var winningCombos = [
     [0, 4, 8],
     [6, 4, 2],
     [1, 4, 7],
-    [2, 4, 5]
+    [2, 4, 6]
 ]
 
 // player objects
@@ -25,13 +31,6 @@ var playerTwo = {
     isWinner: false
 }
 
-//global variable to keep track of moves made
-var gameCounter = 0;
-
-//global variable to check if the game will continue
-var gameOver = false;
-
-
 //happens after each click event
 function handleClick(event){
     // debugger
@@ -43,15 +42,18 @@ function handleClick(event){
 // writes the players move into the clicked box
 function chooseSquare(e){
     if(!gameOver){
-        if(gameCounter % 2 == 0 && e.target.textContent !== "O"){
-            playerChoices(playerTwo, e)
-            e.target.textContent = "X"
-            gameCounter = gameCounter + 1
-        }else if(e.target.textContent !== "X"){
-            playerChoices(playerOne, e)
-            e.target.textContent = "O"
-            gameCounter = gameCounter + 1
+        if(e.target.textContent == ""){
+            if(gameCounter % 2 == 0 && e.target.textContent !== "O"){
+                playerChoices(playerTwo, e)
+                e.target.textContent = "X"
+                gameCounter = gameCounter + 1
+            }else if(e.target.textContent !== "X"){
+                playerChoices(playerOne, e)
+                e.target.textContent = "O"
+                gameCounter = gameCounter + 1
+            }
         }
+        
     }
 
 }
@@ -111,7 +113,6 @@ function checkWin(player){
         }
     }  
 }
-
 
 
 for(let i = 0; i < element.length; i++)(
