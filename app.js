@@ -65,7 +65,7 @@ function chooseSquare(e){
 
 function draw(){
     console.log(playerOne.moves.length)
-    if(playerOne.moves.length == 4 && !gameOver){
+    if(playerOne.moves.length == 5 && !gameOver){
         gameOver = true;
         alert("no one wins")
     }

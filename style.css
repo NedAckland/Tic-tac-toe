@@ -4,29 +4,33 @@
     font-family: 'Raleway';
     margin:0;
 }
-
+header{
+    margin: 3%;
+}
 body{
-    background-color:grey;
+    background: #1D1F20;
 }
 
 main{
     /* background-image: url(); */
-    /* height: 600px; */
-    /* width: 500px; */
-    background-color: rgb(116, 116, 116);
-    margin: 15% auto;
+    height: 600px;
+    width: 500px; 
+    background-color: rgba(116, 116, 116, 0.116);
+    margin: 5% auto;
 }
 li{
     background:transparent;
     display: flex;
     justify-content: center;
-    align-items: content;
+    align-items: center;
+    /* position: fixed; */
 
     /* text-align: center; */
     /* margin: 10%; */
     color: white;
     /* font-size: 3rem; */
-    border: 1px solid white;
+    /* border: 1px solid white; */
+    /* border-radius: 5% 5% 5% 5%; */
 }
 
 .container{
@@ -40,15 +44,17 @@ li{
     padding: inherit;
 
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 3px;
+    grid-template-rows: 1fr 1fr 1fr;
+
+    gap: 1px;
 }
-/* .gradient-border {
-    --borderWidth: 5px;
+.gradient-border{
+    --borderWidth: 2px;
     background: #1D1F20;
     position: relative;
-    border-radius: var(--borderWidth);
+    border-radius: 5%;
     }
-.gradient-border:after {
+.gradient-border:after{
     content: '';
     position: absolute;
     top: calc(-1 * var(--borderWidth));
@@ -60,6 +66,11 @@ li{
     z-index: -1;
     animation: animatedgradient 3s ease alternate infinite;
     background-size: 300% 300%;
+}
+
+.start-again{
+    color: white;
+    margin: 5% 0;
 }
 
 
@@ -76,8 +87,16 @@ li{
 }
 
 .glow {
-    font-size: 80px;
+    font-size: 50px;
     color: #fff;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+.refresh-glow{
+    font-size: 30px;
+    color: rgb(0, 0, 0);
     text-align: center;
     -webkit-animation: glow 1s ease-in-out infinite alternate;
     -moz-animation: glow 1s ease-in-out infinite alternate;
@@ -85,10 +104,65 @@ li{
 }
 
 @-webkit-keyframes glow {
-from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
 }
-to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
 }
-} */
+
+.grid-top-left{
+    /* border: 1px solid white; */
+    border-bottom: 1px solid white;
+    border-right: 1px solid white ;
+    border-radius: 5% 0;
+}
+.grid-top-middle{
+    /* border: 1px solid white; */
+    border-bottom: 1px solid white;
+    border-right: 1px solid white ;
+    border-left: 1px solid white ;
+
+    border-radius: 0  0 5% 5%;
+}
+.grid-top-right{
+    /* border: 1px solid white; */
+    border-bottom: 1px solid white;
+    border-left: 1px solid white ;
+    border-radius: 0 5%;
+}
+.grid-middle-left{
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white ;
+    border-radius: 0 5% 5% 0;
+}
+.grid-middle{
+    border:  1px solid white;
+    border-radius: 5%;
+}
+.grid-middle-right{
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white ;
+    border-radius: 5% 0 0 5%;
+}
+.grid-bottom-left{
+    border-top: 1px solid white;
+    border-right: 1px solid white ;
+    border-radius: 0 5% 0 0;
+}
+.grid-bottom{
+    border-top: 1px solid white;
+    border-right: 1px solid white ;
+    border-left: 1px solid white ;
+
+    border-radius: 5% 5% 0 0;
+}
+.grid-bottom-right{
+    border-top: 1px solid white;
+    border-left: 1px solid white ;
+    border-radius: 5% 0 0 0;
+
+}
