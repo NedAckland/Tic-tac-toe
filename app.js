@@ -1,6 +1,10 @@
 // select Html elements
 var element = document.querySelectorAll('li');
 var restart = document.querySelector('.start-again');
+var playerOneScore = document.querySelector('.score-traker-O span');
+var playerTwoScore = document.querySelector('.score-traker-X span');
+var title = document.querySelector('.title');
+
 
 //global variable to keep track of moves made
 var gameCounter = 0;
@@ -68,6 +72,7 @@ function draw(){
     if(playerOne.moves.length == 5 && !gameOver){
         gameOver = true;
         alert("no one wins")
+        title.textContent = "Draw" 
     }
 }
 
@@ -87,11 +92,11 @@ function gameOverCheck(){
         checkWin(playerTwo)
         checkWin(playerOne)
         if(playerOne.isWinner){
-            alert(playerOne.side + " is the winner")
+            title.textContent = playerOne.side + " Wins" 
             gameOver = true;
             return true;
         }else if(playerTwo.isWinner){
-            alert(playerTwo.side + " is the winner")
+            title.textContent = playerTwo.side + " Wins" 
             gameOver = true;
             return true;
         }
@@ -127,7 +132,17 @@ function checkWin(player){
     }  
 }
 
+function scoreTraker(){
+    if(playerOne.isWinner){
+        playerOneScore.textContent = Number(playerOneScore.textContent) + 1;
+    }else if(playerTwo.isWinner){
+        playerTwoScore.textContent = Number(playerTwoScore.textContent) + 1
+    }
+}
+
 function NewGame(){
+    scoreTraker()
+    title.textContent = "Tic-Tac-Toe" 
     gameOver = false;
     playerOne.isWinner = false;
     playerTwo.isWinner = false;

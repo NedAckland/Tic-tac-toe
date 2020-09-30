@@ -6,6 +6,8 @@
 }
 header{
     margin: 3%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
 }
 body{
     background: #1D1F20;
@@ -88,11 +90,11 @@ li{
 
 .glow {
     font-size: 50px;
-    color: #fff;
+    color: rgb(255, 255, 255);
     text-align: center;
-    -webkit-animation: glow 1s ease-in-out infinite alternate;
-    -moz-animation: glow 1s ease-in-out infinite alternate;
-    animation: glow 1s ease-in-out infinite alternate;
+    -webkit-animation: glow 4s ease-in-out infinite alternate;
+    -moz-animation: glow 4s ease-in-out infinite alternate;
+    animation: glow 4s ease-in-out infinite alternate;
 }
 .refresh-glow{
     font-size: 30px;
@@ -114,55 +116,61 @@ li{
 
 .grid-top-left{
     /* border: 1px solid white; */
-    border-bottom: 1px solid white;
-    border-right: 1px solid white ;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.37);
+    border-right: 1px solid rgba(255, 255, 255, 0.37);
     border-radius: 5% 0;
 }
 .grid-top-middle{
     /* border: 1px solid white; */
-    border-bottom: 1px solid white;
-    border-right: 1px solid white ;
-    border-left: 1px solid white ;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.37);
+    border-right: 1px solid rgba(255, 255, 255, 0.37) ;
+    border-left: 1px solid rgba(255, 255, 255, 0.37) ;
 
     border-radius: 0  0 5% 5%;
 }
 .grid-top-right{
     /* border: 1px solid white; */
-    border-bottom: 1px solid white;
-    border-left: 1px solid white ;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.37);
+    border-left: 1px solid rgba(255, 255, 255, 0.37) ;
     border-radius: 0 5%;
 }
 .grid-middle-left{
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
-    border-right: 1px solid white ;
+    border-top: 1px solid rgba(255, 255, 255, 0.37);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.37);
+    border-right: 1px solid rgba(255, 255, 255, 0.37) ;
     border-radius: 0 5% 5% 0;
 }
 .grid-middle{
-    border:  1px solid white;
+    border:  1px solid rgba(255, 255, 255, 0.37);
     border-radius: 5%;
 }
 .grid-middle-right{
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
-    border-left: 1px solid white ;
+    border-top: 1px solid rgba(255, 255, 255, 0.37);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.37);
+    border-left: 1px solid rgba(255, 255, 255, 0.37) ;
     border-radius: 5% 0 0 5%;
 }
 .grid-bottom-left{
-    border-top: 1px solid white;
-    border-right: 1px solid white ;
+    border-top: 1px solid rgba(255, 255, 255, 0.37);
+    border-right: 1px solid rgba(255, 255, 255, 0.37) ;
     border-radius: 0 5% 0 0;
 }
 .grid-bottom{
-    border-top: 1px solid white;
-    border-right: 1px solid white ;
-    border-left: 1px solid white ;
+    border-top: 1px solid rgba(255, 255, 255, 0.37);
+    border-right: 1px solid rgba(255, 255, 255, 0.37) ;
+    border-left: 1px solid rgba(255, 255, 255, 0.37) ;
 
     border-radius: 5% 5% 0 0;
 }
 .grid-bottom-right{
-    border-top: 1px solid white;
-    border-left: 1px solid white ;
+    border-top: 1px solid rgba(255, 255, 255, 0.37);
+    border-left: 1px solid rgba(255, 255, 255, 0.37) ;
     border-radius: 5% 0 0 0;
+
+}
+.score-traker-O, .score-traker-X {
+    border-left: 1px solid rgba(255, 255, 255, 0.37);
+    border-right: 1px solid rgba(255, 255, 255, 0.37);
+    /* margin: 20%; */
 
 }
