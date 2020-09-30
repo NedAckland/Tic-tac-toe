@@ -1,5 +1,6 @@
 // select Html elements
 var element = document.querySelectorAll('li');
+var restart = document.querySelector('.start-again');
 
 //global variable to keep track of moves made
 var gameCounter = 0;
@@ -16,7 +17,8 @@ var winningCombos = [
     [0, 4, 8],
     [6, 4, 2],
     [1, 4, 7],
-    [2, 4, 6]
+    [2, 4, 6],
+    [3, 4, 5]
 ]
 
 // player objects
@@ -34,10 +36,13 @@ var playerTwo = {
 //happens after each click event
 function handleClick(event){
     // debugger
+    draw()
     chooseSquare(event);
     gameOverCheck();
 
 }
+// restart button
+restart.addEventListener('click', NewGame);
 
 // writes the players move into the clicked box
 function chooseSquare(e){
@@ -58,12 +63,20 @@ function chooseSquare(e){
 
 }
 
+function draw(){
+    console.log(playerOne.moves.length)
+    if(playerOne.moves.length == 4 && !gameOver){
+        gameOver = true;
+        alert("no one wins")
+    }
+}
+
 //keeps track of each players moves
 function playerChoices(playerIs, e){
     if(!gameOver){
         playerIs.moves.push(Number(e.target.getAttribute("data-square")))
         e.target.removeAttribute("data-square")        
-        console.log(playerIs.moves)
+        // console.log(playerOne.moves)
     }
 }
 
@@ -114,7 +127,22 @@ function checkWin(player){
     }  
 }
 
+function NewGame(){
+    gameOver = false;
+    playerOne.isWinner = false;
+    playerTwo.isWinner = false;
+    playerOne.moves.length = 0;
+    playerTwo.moves.length = 0;
+    // console.log(element[0].textContent = "");
+    for(let i = 0; i < 9; i++){
+        element[i].textContent = ""
+        element[i].setAttribute("data-square", i)
+    }
+}
 
-for(let i = 0; i < element.length; i++)(
+
+
+
+for(let i = 0; i < element.length; i++){
     element[i].addEventListener('click', handleClick)
-)
+}
