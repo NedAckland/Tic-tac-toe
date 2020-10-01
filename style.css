@@ -68,6 +68,9 @@ button{
     /* transform-origin: top; */
 
 }
+.p1-name:hover, .p2-name:hover, .options:hover, .start-again:hover{
+    cursor: pointer;
+}
 .square-wrap{
     height: 600px;
     width: 500px;
