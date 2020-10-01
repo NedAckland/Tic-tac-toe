@@ -4,6 +4,7 @@
 <p>To create a working tic tac toe game</p>
 
 <h3>Screenshot: </h3>
+
 ![example](/tic-tac-scrnshot.png)
 
 <h3>Try it out:</h3>
