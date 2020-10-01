@@ -7,13 +7,14 @@ var playerOneName = document.querySelector('.score-traker-O span');
 var playerTwoName = document.querySelector('.score-traker-X span');
 var title = document.querySelector('.title');
 var options = document.querySelector('.options');
-var optionWrap = document.querySelector('.option-wrap')
-var nameChangePOne = document.querySelector('.p1-name');
-var nameChangePTwo = document.querySelector('.p2-name');
+var optionWrap = document.querySelector('.option-wrap');
 var playerOptions = document.querySelector('.player-one-options');
+var p1NameChange = document.querySelector('.p1-name-change');
+var p2NameChange = document.querySelector('.p2-name-change');
 
-var nameInput = document.querySelector('input');
+var nameInput = document.querySelectorAll('input');
 var btn = document.querySelectorAll('button');
+var span = document.querySelectorAll('span');
 
 //global variable to keep track of moves made
 var gameCounter = 0;
@@ -161,6 +162,9 @@ function NewGame(){
         element[i].setAttribute("data-square", i)
     }
 }
+
+
+/////////////////////////////////////////////////////////////////////////////// name changing ///////////////////////////////////////////////////////////////////////////
 //to prevent needing to double click
 optionWrap.style.visibility = "hidden";
 
@@ -177,28 +181,55 @@ function optionDropDown(){
     }
 
 }
-function pOneNameDropDown(){
-    console.log(nameChangePOne.textContent)
-}
-function pTwoNameDropDown(){
-    console.log(nameChangePTwo.textContent)
-}
-function changeName(){
-    // alert(nameInput.value)
-    // console.log("hello")
-    playerOneName.textContent = nameInput.value + '-';
 
-
+function changeNameOne(){
+    playerOne.side  = nameInput[0].value;
+    playerOneName.textContent = nameInput[0].value + ' - ';
+}
+function changeNameTwo(){
+    playerTwo.side  = nameInput[1].value;
+    playerTwoName.textContent = nameInput[1].value + ' - ';
 }
 
-// nameChangePOne.addEventListener('click', pOneNameDropDown);
-// nameChangePTwo.addEventListener('click', pTwoNameDropDown);
+
+function spanTest(event){
+    if(event.target.getAttribute("data-player") == '0'){
+        toggleInput(p1NameChange);
+        confirmChange()
+    }else if(event.target.getAttribute("data-player") == '1'){
+        confirmChange()
+        toggleInput(p2NameChange);
+    }
+    
+}
+
+function confirmChange(){
+    changeNameOne()
+    changeNameTwo()
+}
+
+p1NameChange.style.visibility = "hidden";
+p2NameChange.style.visibility = "hidden";
+
+function toggleInput(player){
+    if(player.style.visibility == "visible"){
+        player.style.visibility = "hidden";
+    }else{
+        player.style.visibility = "visible";
+    }
+}
+
+
 
 for(let i = 0; i < element.length; i++){
     element[i].addEventListener('click', handleClick)
 }
 
-// for(let i = 0; i < btn.length; i++){
-//     btn[i].addEventListener('click', handleClick)
-// }
+for(let i = 0; i < span.length; i++){
+    span[i].addEventListener('click', spanTest)
+}
+
+for(let i = 0; i < btn.length; i++){
+    btn[i].addEventListener('click', confirmChange)
+}
 

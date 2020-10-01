@@ -36,6 +36,11 @@ li{
     /* border: 1px solid white; */
     /* border-radius: 5% 5% 5% 5%; */
 }
+button{
+    color: white;
+    background-color: #1D1F20;
+    border: 1px solid #fff;
+}
 
 .option-wrap{
     width: fit-content;
@@ -56,7 +61,8 @@ li{
     grid-template-columns: 1fr 1fr;
     /* width: 250px; */
     /* height: 100px; */
-    /* background-color: #fff; */
+    background-color: grey;
+    color: ivory;
     /* margin-left: 70px; */
     /* visibility: hidden; */
     /* transform-origin: top; */
