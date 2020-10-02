@@ -46,10 +46,15 @@ var playerTwo = {
     moves: [],
     isWinner: false
 }
+// var computerPlayer = {
+//     moves: [],
+//     isWinner: false
+// }
 
 //happens after each click event
 function handleClick(event){
     // debugger
+    // console.log(gameCounter)
     draw()
     chooseSquare(event);
     gameOverCheck();
@@ -65,14 +70,19 @@ options.addEventListener('click', optionDropDown);
 function chooseSquare(e){
     if(!gameOver){
         if(e.target.textContent == ""){
-            if(gameCounter % 2 == 0 && e.target.textContent !== "O"){
-                playerChoices(playerTwo, e)
-                e.target.textContent = "X"
-                gameCounter = gameCounter + 1
-            }else if(e.target.textContent !== "X"){
-                playerChoices(playerOne, e)
-                e.target.textContent = "O"
-                gameCounter = gameCounter + 1
+            if(!isVsComputer){
+                if(gameCounter % 2 == 0 && e.target.textContent !== "O"){
+                    playerChoices(playerTwo, e)
+                    e.target.textContent = "X"
+                    gameCounter = gameCounter + 1
+                }else if(e.target.textContent !== "X"){
+                    playerChoices(playerOne, e)
+                    e.target.textContent = "O"
+                    gameCounter = gameCounter + 1
+                }
+            }else{
+            chooseSquareCompuer(e)
+            // console.log("choosesquareCompuer")
             }
         }
         
@@ -80,8 +90,26 @@ function chooseSquare(e){
 
 }
 
+function chooseSquareCompuer(e){
+
+    var num = numberGen()
+    if (element[num].textContent === undefined){
+        var num = numberGen()
+    }
+    checkIfMovePlayed(num)
+    if(gameCounter % 2 == 0 && e.target.textContent !== "X"){
+        playerChoices(playerOne, e)
+        e.target.textContent = "O"
+        gameCounter = gameCounter + 1
+    }else if(element[num].textContent !== "O"){
+        computerChoice(num);
+        element[num].textContent = "X"
+        gameCounter = gameCounter + 1
+    }
+}
+
 function draw(){
-    if(playerOne.moves.length == 5 && !gameOver){
+    if((playerOne.moves.length + playerTwo.moves.length) == 9){
         gameOver = true;
         title.textContent = "Draw" 
     }
@@ -141,6 +169,9 @@ function checkWin(player){
 }
 // Tracks current users scores
 function scoreTraker(){
+    if(vsComputer){
+        playerTwoScore.textContent = 0;
+    }
     if(playerOne.isWinner){
         playerOneScore.textContent = Number(playerOneScore.textContent) + 1;
     }else if(playerTwo.isWinner){
@@ -218,8 +249,80 @@ function toggleInput(player){
         player.style.visibility = "visible";
     }
 }
+////////////////////////////////////////////////////play vs computer////////////////////////////////////////////////////////////////////////////
+// add option in menu 
+// asign player 2 as computer
+var computerSelector = document.querySelector('.play-computer');
+
+var isVsComputer = false;
+var gameMode = document.querySelector('.play-computer span');
+gameMode.textContent = "play computer"
+
+function vsComputer(){
+    NewGame();
+    if(gameMode.textContent == "play computer"){
+        gameMode.textContent = "play human"
+        isVsComputer = true;
+        playerTwoName.textContent = "Computer  - "
+    }else{
+        gameMode.textContent = "play computer"
+        isVsComputer = false;
+        playerTwoName.textContent = "X - "
+    }
+    // console.log(numberGen())
+}
+
+console.log(numberGen());
+// choose out of possible numbers
+function numberGen(){
+    var squaresLeft = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    // var movesMade = Number(playerOne.moves.concat(playerTwo.moves));
+    var movesMade = [0, 1, 2];
+    var availableSquares = [];
+    // for(let i = 0; i < movesMade.length; i++){
+    //     for(let a = 0; a < squaresLeft.length; a++){
+    //         // if(!(movesMade[i] == squaresLeft[a])){
+    //             availableSquares = []
+
+    //         }
+    //     }
+    // }
+
+    // 
+    console.log("moves made " + movesMade)
+    console.log("sqaures left " + squaresLeft)
 
 
+    for(let i = 0; i < squaresLeft.length; i ++){
+        var pcChoice = Math.floor(Math.random() * squaresLeft[i]); 
+
+    }
+    // console.log(pcChoice)
+    return pcChoice;
+}
+
+function checkIfMovePlayed(pcChoice){
+    if((pcMove[pcChoice].getAttribute("data-square") === undefined)){
+        console.log("undefined")
+    }
+
+}
+
+var pcMove = document.querySelectorAll('li');
+
+function computerChoice(moveIs){
+    if(!gameOver){
+        playerTwo.moves.push(Number(pcMove[moveIs].getAttribute("data-square")))
+        pcMove[moveIs].removeAttribute("data-square")        
+    }
+    // console.log(moveIs)
+
+}
+
+computerSelector.addEventListener('click', vsComputer);
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 for(let i = 0; i < element.length; i++){
     element[i].addEventListener('click', handleClick)
