@@ -18,3 +18,6 @@ https://nedackland.github.io/Tic-tac-toe/
 
 ![planning](/images/planning.png)
 
+<h3>TODO</h3>
+<p>I have started on creating an option to play the computer</p>
+<p>I need to make it responsive</p>
